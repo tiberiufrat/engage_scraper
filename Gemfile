@@ -33,7 +33,7 @@ gem 'cgi'
 gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
 
 gem 'webdrivers', '~> 4.0', require: false
-gem 'chromedriver-helper'
+# gem 'chromedriver-helper' # DEPRECATED
 
 gem 'capybara', '>= 3.26'
 
