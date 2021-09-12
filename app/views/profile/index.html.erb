@@ -1,0 +1,122 @@
+<section class="section">
+  <div class="section-header">
+    <h1>Profile</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+      <div class="breadcrumb-item">Profile</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <h2 class="section-title">Hi, <%= current_user.first_name %>!</h2>
+    <p class="section-lead">
+      See and change information about yourself on this page.
+    </p>
+
+    <div class="row mt-sm-4">
+      <div class="col-12 col-md-12 col-lg-5">
+        <div class="card profile-widget">
+          <div class="profile-widget-header">                     
+            <%= image_tag('avatar/avatar-1.png', class: 'rounded-circle profile-widget-picture') %>
+            <div class="profile-widget-items">
+              <div class="profile-widget-item">
+                <div class="profile-widget-item-label">Year</div>
+                <div class="profile-widget-item-value"><%= current_user.year %></div>
+              </div>
+              <div class="profile-widget-item">
+                <div class="profile-widget-item-label">Form</div>
+                <div class="profile-widget-item-value">
+                  <%= link_to current_user.form.name, current_user.form, class: 'font-weight-bold' %>
+                </div>
+              </div>
+              <div class="profile-widget-item">
+                <div class="profile-widget-item-label">House</div>
+                <div class="profile-widget-item-value" style="color: <%= current_user.house %>">
+                  <%= current_user.house %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-widget-description">
+            <div class="profile-widget-name"><%= current_user.full_name %> <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Pupil</div></div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <strong>Date of birth:</strong> <%= current_user.birth_date %>
+              </li>
+              <li class="list-group-item">
+                <strong>Gender:</strong> <%= current_user.gender %>
+              </li>
+              <li class="list-group-item">
+                <strong>Current sign in at:</strong> <%= l current_user.current_sign_in_at %>
+              </li>
+              <li class="list-group-item">
+                <strong>Current sign in from IP:</strong> <code><%= current_user.current_sign_in_ip %></code>
+              </li>
+              <li class="list-group-item">
+                <strong>Sign in count:</strong> <%= current_user.sign_in_count %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-7">
+        <div class="card">
+          <%= form_for(current_user, url: user_registration_path, html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: current_user %>
+            <div class="card-header">
+              <h4>Edit Profile</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">         
+                <div class="form-group col-md-6 col-12">
+                  <%= f.label :first_name %><br />
+                  <%= f.text_field :first_name, class: 'form-control' %>
+                  <div class="invalid-feedback">
+                    Please fill in the first name field.
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6 col-12">
+                  <%= f.label :last_name %><br />
+                  <%= f.text_field :last_name, class: 'form-control' %>
+                  <div class="invalid-feedback">
+                    Please fill in the last name field.
+                  </div>
+                </div>  
+
+                <div class="form-group col-12">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, class: 'form-control' %>
+                  <div class="invalid-feedback">
+                    Please fill in the e-mail
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <%= f.label :password, class: "control-label" %> (complete only if you're changing your password)
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control", minlength: "6" %>
+                  <small id="passwordHelp" class="form-text text-muted">Minim 6 caractere</small>
+                  <div class="invalid-feedback">
+                    Te rugăm să confirmi parola
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <%= f.label :password_confirmation, class: "control-label" %> (complete only if you're changing your password)
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", minlength: "6" %>
+                  <div class="invalid-feedback">
+                    Te rugăm să confirmi parola
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <%= f.password_field :current_password, class: "form-control w-50", required: "", placeholder: 'Current password' %>
+              <button class="btn btn-primary">Save Changes</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

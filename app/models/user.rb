@@ -4,4 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable
+
+  belongs_to :form, optional: true
+  has_many :lessons
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

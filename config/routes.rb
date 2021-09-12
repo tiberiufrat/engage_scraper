@@ -1,12 +1,23 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'profile', to: 'profile#index', as: 'profile'
   resources :forms
-  devise_for :users
+  
+  # Override default devise routes with routes to custom controllers
+  Rails.application.routes.draw do
+  get 'profile/index'
+    devise_for :users, controllers: {
+      registrations: 'users/registrations'
+    }
+  end
+
   resources :lessons
-  get 'timetable_scraper/scrape'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
   mount Sidekiq::Web => '/sidekiq'
-  get '/scrape', to: 'timetable_scraper#scrape', as: 'scrape_timetable'
+
+  get '/engage_scraper', to: 'engage_scraper#scrape', as: 'scrape_engage'
+  get '/engage_scraper/authorise', to: 'engage_scraper#authorise', as: 'authorise_scrape_engage'
 end

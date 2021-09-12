@@ -7,6 +7,7 @@ class CreateLessons < ActiveRecord::Migration[6.1]
       t.string :end_time
       t.string :teacher
       t.string :room
+      t.references :user, foreign_key: { to_table: :users }
 
       t.timestamps
     end

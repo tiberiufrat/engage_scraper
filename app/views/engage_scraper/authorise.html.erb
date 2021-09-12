@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+      <div class="login-brand">
+        <img src="https://avenorcollegeportal.engagehosted.com/images/dfLogo.gif" alt="engage-logo", width="100">
+      </div>
+
+      <%# <section class="section">
+        <div class="section-header d-mobile-none">
+          <h1>Scrape timetable</h1>
+        </div>
+        <p class="lead">Please input the login information for your Engage parent account. The password will not be saved on our server.</p>
+      </section> %>
+
+      <div class="card card-primary">
+        <div class="card-header"><h4>Autentificare în Engage</h4></div>
+
+        <div class="card-body">
+          <% flash.each do |name, msg| %>
+            <% if name == "alert" %>
+              <div class="alert alert-danger alert-dismissible show fade alert-has-icon">
+                <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                <div class="alert-body d-flex align-items-center">
+                  <button class="close" data-dismiss="alert">
+                    <span>×</span>
+                  </button>
+                  <%= msg %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
+          <%= form_with url: "/engage_scraper", method: :get, html: { onsubmit: "
+                Swal.fire({
+                  title: 'Please wait',
+                  text: 'This may take up to a few minutes, depending on your internet connection. Processing…',
+                  allowOutsideClick: false,
+                  allowEscapeKey: false
+                });
+                Swal.showLoading()
+              " } do |f| %>
+
+            <div class="alert alert-primary alert-has-icon">
+              <div class="alert-icon"><i class="fas fa-lightbulb"></i></div>
+              <div class="alert-body">
+                Autentifică-te în Engage pentru a-ți prelua automat informațiile personale. Parola ta de la contul de Engage nu este stocată pe serverul nostru.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :email, "Adresă de e-mail" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi adresa de e-mail
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-block">
+                <%= f.label :password, "Parolă", class: "control-label" %>
+                <div class="float-right">
+                  <a class="text-small" href="javascript:;" onclick="Swal.fire('If you have forgotten your password, please reset it from Engage or contact your school administrator to reset it for you.')">Ai uitat parola?</a>
+                </div>
+              </div>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi parola
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "Preia informațiile…", class: "btn btn-primary btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="simple-footer">
+        © <%= Date.today.year %> Tiberiu Frățilă. This website is not affiliated in any way with Engage, Double First Ltd. or the Education Horizons Group.
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:page_title, 'Authorisation in progress...') %>

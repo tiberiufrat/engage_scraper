@@ -19,15 +19,15 @@
         <% end %>
       </li>
 
-      <li class="<%= active_nav_item('timetable_scraper', 'scrape') %>">
-        <%= link_to scrape_timetable_path, class: "nav-link" do %>
-          <i class="fas fa-sync"></i> <span>Scrape timetable</span>
+      <li class="<%= active_nav_item('forms', 'show') %>">
+        <%= link_to current_user.form, class: "nav-link" do %>
+          <i class="fas fa-users"></i> <span>Form</span>
         <% end %>
       </li>
-
+      <!--
       <li class="menu-header">Controllers</li>
       <%= render 'shared/sidebar_dropdown', title: 'Resources', icon: 'fas fa-file-alt' do %>
-      <!--
+      
         <li class="<#= active_nav_item('customers', crud_actions) #>">
           <#= link_to 'Customers', customers_path, class: 'nav-link' #>
         </li>
@@ -36,8 +36,8 @@
     </ul>
 
     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-      <%= link_to scrape_timetable_path, class: "btn btn-primary btn-lg btn-block btn-icon-split" do %>
-        <i class="fas fa-sync"></i> <span>Scrape timetable</span>
+      <%= link_to authorise_scrape_engage_path, class: "btn btn-primary btn-lg btn-block btn-icon-split" do %>
+        <i class="fas fa-sync"></i> <span>Sync with Engage</span>
       <% end %>
     </div>
 

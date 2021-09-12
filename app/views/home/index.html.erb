@@ -2,8 +2,18 @@
   <div class="section-header d-mobile-none">
     <h1>Dashboard</h1>
   </div>
-  <h1>Home#index</h1>
-  <p class="lead">Find me in app/views/home/index.html.erb</p>
+  <div class="col-12 mb-4">
+    <div class="hero text-white hero-bg-image" style="background-image: url(<%= asset_path 'unsplash/eberhard-grossgasteiger-1207565-unsplash.jpg' %>);">
+      <div class="hero-inner">
+        <h2>Welcome, <%= current_user.first_name %>!</h2>
+        <p class="lead">Select an option from the sidebar or click on one of the buttons below.</p>
+        <div class="mt-4">
+          <%= link_to icon('fas fa-chalkboard-teacher', ' Timetable'), lessons_path, class: "btn btn-outline-white btn-lg btn-icon icon-left" %>
+          <%= link_to icon('fas fa-user-circle', ' Profile'), profile_path, class: "btn btn-outline-white btn-lg btn-icon icon-left" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <% content_for(:page_title, 'Dashboard') %>

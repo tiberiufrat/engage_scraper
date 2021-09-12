@@ -20,11 +20,7 @@
           <% end %>
         </h4>
         <div class="card-header-action">
-          <%= link_to icon('fas fa-plus', 'New Lesson'), new_lesson_path, class: 'btn btn-icon icon-left btn-primary' %>
-          <%= render 'shared/card_dropdown' do %>
-            <%= link_to icon('fas fa-download', 'Export Data'), lessons_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
-            <%= link_to icon('fas fa-print', 'Print Page'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
-          <% end %>
+        <%= link_to icon('fas fa-print', ' Print Page'), 'javascript:window.print()', class: 'btn btn-primary has-icon' %>
         </div>
       </div>
       <div class="card-body">
@@ -126,19 +122,15 @@
                   </ul>
 
                 <% else # If there are no lessons in that day, show empty state %>
-                  <div class="empty-state" data-height="400" style="height: 400px;">
+                  <div class="empty-state" data-height="300" style="height: 300px;">
                     <div class="empty-state-icon">
                       <i class="fas fa-question"></i>
                     </div>
-                    <h2>There are no classes for this day</h2>
-                    <p class="lead">
-                      If you think there should be classes, please sync class information from Engage
-                    </p>
-                    <%= link_to 'Sync information', scrape_timetable_path, class: 'btn btn-primary mt-4' %>
+                    <h2>There are no classes to show</h2>
                     <a href="javascript:;" 
                       onclick="window.Swal.fire({
                         icon: 'question',
-                        text: 'Your information may have not been imported or processed correctly. Please press „Sync information” to sync your data with Engage!',
+                        text: 'Your information may have not been imported or processed correctly. Please press „Sync with Engage” in the sidebar to sync your data with Engage!',
                       })"
                       class="mt-4 bb"
                     >
