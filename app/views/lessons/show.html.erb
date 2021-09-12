@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="section-header d-mobile-none">
+    <h1>Lessons</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
+      <div class="breadcrumb-item"><%= link_to 'Lessons', lessons_path %></div>
+      <div class="breadcrumb-item">Show Lesson</div>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div class="card">
+      <div class="card-header">
+        <h4>Show Lesson</h4>
+      </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-3">Name:</dt>
+          <dd class="col-sm-9"><%= @lesson.name %></dd>
+          <dt class="col-sm-3">Weekday:</dt>
+          <dd class="col-sm-9"><%= @lesson.weekday %></dd>
+          <dt class="col-sm-3">Start time:</dt>
+          <dd class="col-sm-9"><%= @lesson.start_time %></dd>
+          <dt class="col-sm-3">End time:</dt>
+          <dd class="col-sm-9"><%= @lesson.end_time %></dd>
+          <dt class="col-sm-3">Teacher:</dt>
+          <dd class="col-sm-9"><%= @lesson.teacher %></dd>
+          <dt class="col-sm-3">Room:</dt>
+          <dd class="col-sm-9"><%= @lesson.room %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to icon('fas fa-edit', 'Edit'), edit_lesson_path(@lesson), class: 'btn btn btn-icon icon-left btn-warning' %>
+<%= link_to icon('fas fa-arrow-left', 'Back'), lessons_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
+
+<% content_for(:page_title, 'Show Lesson') %>

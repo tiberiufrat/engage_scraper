@@ -1,0 +1,29 @@
+<%= form_with(model: lesson, data: { controller: 'validation' }) do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :weekday %>
+    <%= form.text_field :weekday, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :start_time %>
+    <%= form.text_field :start_time, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :end_time %>
+    <%= form.text_field :end_time, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :teacher %>
+    <%= form.text_field :teacher, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :room %>
+    <%= form.text_field :room, class: 'form-control' %>
+  </div>
+  <div class="card-footer pl-0">
+    <%= form.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

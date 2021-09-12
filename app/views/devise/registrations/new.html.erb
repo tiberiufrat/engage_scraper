@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+      <div class="login-brand">
+        <%= image_tag("stisla-fill.svg", alt: "logo", class: "shadow-light rounded-circle", width: "100") %>
+      </div>
+
+      <div class="card card-primary">
+        <div class="card-header"><h4>Înregistrare</h4></div>
+
+        <div class="card-body">
+          <% resource.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger alert-dismissible show fade">
+              <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                  <span>×</span>
+                </button>
+                <%= msg %>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="alert alert-primary alert-has-icon">
+            <div class="alert-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="alert-body">
+              Restul informațiilor tale vor fi preluate în mod automat de pe Engage. Vei avea opțiunea să le modifici ulterior.
+            </div>
+          </div>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "needs-validation", novalidate: ""}) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, "Adresă de e-mail" %>
+              <%= f.email_field :email, autocomplete: "email", class: "form-control", autofocus: true, required: "" %>
+              <div class="invalid-feedback">
+                Te rugăm să completezi adresa de e-mail
+              </div>
+            </div>
+
+            
+
+          <div class="alert alert-warning alert-has-icon">
+            <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="alert-body">
+              Din motive de securitate, te rugăm să nu folosești aceeași parolă pe care o folosești la contul de Engage.
+            </div>
+          </div>  
+
+            <div class="form-group">
+              <%= f.label :password, "Parolă", class: "control-label" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: "", minlength: "6" %>
+              <small id="passwordHelp" class="form-text text-muted">Minim <%= @minimum_password_length %> caractere</small>
+              <div class="invalid-feedback">
+                Te rugăm să confirmi parola
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, "Confirmă parola", class: "control-label" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: "", minlength: "6" %>
+              <div class="invalid-feedback">
+                Te rugăm să confirmi parola
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "Înregistrează-te", class: "btn btn-primary btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-5 text-muted text-center">
+        Ai deja un cont? <%= link_to "Autentifică-te", new_session_path(resource_name) %>
+      </div>
+      <div class="simple-footer">
+        © <%= Date.today.year %>
+      </div>
+    </div>
+  </div>
+</div>
