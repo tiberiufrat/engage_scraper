@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   get 'profile', to: 'profile#index', as: 'profile'
-  resources :forms
+  resources :forms, only: %i[ index show ]
   
   # Override default devise routes with routes to custom controllers
   Rails.application.routes.draw do
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :lessons
+  resources :lessons, only: %i[ index ]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'

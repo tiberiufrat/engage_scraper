@@ -53,7 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     # super(resource)
-    :authorise_engage_scraper_path
+    authorise_scrape_engage_path(resource)
   end
 
   # The path used after sign up for inactive accounts.

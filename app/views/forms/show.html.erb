@@ -11,21 +11,29 @@
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Show Form</h4>
+        <h4><%= @form.name %></h4>
       </div>
       <div class="card-body">
-        <dl class="row">
-          <dt class="col-sm-3">Name:</dt>
-          <dd class="col-sm-9"><%= @form.name %></dd>
-          <dt class="col-sm-3">Form tutor:</dt>
-          <dd class="col-sm-9"><%= @form.form_tutor %></dd>
-        </dl>
+        <h6>Form tutor</h6>
+        <ul class="list-group mb-4">
+          <li class="list-group-item"><%= @form.form_tutor %></li>
+        </ul>
+        <h6>Students</h6>
+        <% if @form.users.any? %>
+          <ul class="list-group">
+            <% @form.users.each do |u| %>
+              <li class="list-group-item"><%= u.full_name %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>There are no students in this form.</p>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
 
-<%= link_to icon('fas fa-edit', 'Edit'), edit_form_path(@form), class: 'btn btn btn-icon icon-left btn-warning' %>
+<%# link_to icon('fas fa-edit', 'Edit'), edit_form_path(@form), class: 'btn btn btn-icon icon-left btn-warning' %>
 <%= link_to icon('fas fa-arrow-left', 'Back'), forms_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
 <% content_for(:page_title, 'Show Form') %>

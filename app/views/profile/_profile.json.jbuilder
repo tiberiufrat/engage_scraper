@@ -1,0 +1,1 @@
+json.extract! current_user, :id, :first_name, :last_name, :email, :phone, :gender, :house, :year, :birth_date, :locale, :image, :created_at, :updated_at, :form_id, :sign_in_count, :current_sign_in_at, :current_sign_in_ip, :last_sign_in_at, :last_sign_in_ip

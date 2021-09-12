@@ -12,11 +12,11 @@
       <div class="card-header">
         <h4>List of Forms</h4>
         <div class="card-header-action">
-          <%= link_to icon('fas fa-plus', 'New Form'), new_form_path, class: 'btn btn-icon icon-left btn-primary' %>
-          <%= render 'shared/card_dropdown' do %>
-            <%= link_to icon('fas fa-download', 'Export Data'), forms_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
-            <%= link_to icon('fas fa-print', 'Print Page'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
-          <% end %>
+          <%# link_to icon('fas fa-plus', 'New Form'), new_form_path, class: 'btn btn-icon icon-left btn-primary' %>
+          <%# render 'shared/card_dropdown' do %>
+            <%# link_to icon('fas fa-download', 'Export Data'), forms_path(format: :csv, q: request.params[:q]), class: 'dropdown-item has-icon' %>
+            <%# link_to icon('fas fa-print', 'Print Page'), 'javascript:window.print()', class: 'dropdown-item has-icon' %>
+          <%# end %>
         </div>
       </div>
       <div class="card-body" data-controller="infinite-page">
@@ -36,6 +36,7 @@
               <tr>
                 <th><%= sort_link_turbo(@search, :name) %></th>
                 <th><%= sort_link_turbo(@search, :form_tutor) %></th>
+                <th><%= sort_link_turbo(@search, :students) %></th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -44,10 +45,11 @@
                 <tr data-target="infinite-page.item">
                   <td><%= form.name %></td>
                   <td><%= form.form_tutor %></td>
+                  <td><%= form.users.size %></td>
                   <td>
                     <%= link_to icon('fas fa-eye'), form, title: 'Show it', class: 'btn btn-icon btn-sm btn-info mr-1' %>
-                    <%= link_to icon('fas fa-edit'), edit_form_path(form), title: 'Edit it', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
-                    <%= link_to icon('fas fa-trash'), form, title: 'Destroy it', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
+                    <%# link_to icon('fas fa-edit'), edit_form_path(form), title: 'Edit it', class: 'btn btn-icon btn-sm btn-warning mr-1' %>
+                    <%# link_to icon('fas fa-trash'), form, title: 'Destroy it', class: 'btn btn-icon btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?', remote: true } %>
                   </td>
                 </tr>
               <% end %>

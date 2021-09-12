@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :trackable
 
   belongs_to :form, optional: true
-  has_many :lessons
+  has_many :lessons, dependent: :destroy
 
   def full_name
     "#{first_name} #{last_name}"

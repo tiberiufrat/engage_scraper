@@ -68,3 +68,9 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 /** HIDE-SPINNERS-END **/
+
+@media print {
+  #lesson-list, .row, .alert, .list-group, .lesson-card {
+    break-inside: avoid;
+  }
+}

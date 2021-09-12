@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <%= link_to 'Stisla', root_path  %>
+      <%= link_to 'Engage Scraper', root_path  %>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <%= link_to 'St', root_path %>
+      <%= link_to 'ES', root_path %>
     </div>
     <ul class="sidebar-menu" data-controller="sidebar">
       <li class="<%= active_nav_item('home', 'index') %>">
@@ -15,7 +15,7 @@
 
       <li class="<%= active_nav_item('lessons', 'index') %>">
         <%= link_to lessons_path, class: "nav-link" do %>
-          <i class="fas fa-chalkboard-teacher"></i> <span>Lessons</span>
+          <i class="fas fa-chalkboard-teacher"></i> <span>Timetable</span>
         <% end %>
       </li>
 

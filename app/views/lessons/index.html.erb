@@ -1,9 +1,9 @@
 <section class="section">
   <div class="section-header d-mobile-none">
-    <h1>Lessons</h1>
+    <h1>Timetable</h1>
     <div class="section-header-breadcrumb">
       <div class="breadcrumb-item"><%= link_to 'Dashboard', root_path %></div>
-      <div class="breadcrumb-item">List of Lessons</div>
+      <div class="breadcrumb-item">Timetable</div>
     </div>
   </div>
 
@@ -73,7 +73,7 @@
         <div id="lesson-list" class="row">
           <% 1.upto 5 do |weekday| %>
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 pb-4">
-              <div class="alert h-100 <%= Date.today.wday == weekday ? 'alert-primary' : 'alert-secondary' %>">
+              <div class="lesson-card alert h-100 <%= Date.today.wday == weekday ? 'alert-primary' : 'alert-secondary' %>">
                 <div class="alert-title d-flex w-100 mb-2 justify-content-between">
                   <%= Date::DAYNAMES[weekday] %>
                   <% if Date.today.wday == weekday %>

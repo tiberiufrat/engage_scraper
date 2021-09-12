@@ -1,0 +1,1 @@
+json.partial! "profile/profile", current_user: current_user

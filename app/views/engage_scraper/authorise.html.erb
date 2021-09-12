@@ -57,9 +57,9 @@
 
             <div class="form-group">
               <div class="d-block">
-                <%= f.label :password, "Parolă", class: "control-label" %>
+                <%= f.label :password, "Parola de la contul Engage", class: "control-label" %>
                 <div class="float-right">
-                  <a class="text-small" href="javascript:;" onclick="Swal.fire('If you have forgotten your password, please reset it from Engage or contact your school administrator to reset it for you.')">Ai uitat parola?</a>
+                  <a class="text-small" href="javascript:;" onclick="Swal.fire({text:'If you have forgotten your password, please reset it from Engage or contact your school administrator to reset it for you.'})">Ai uitat parola?</a>
                 </div>
               </div>
               <%= f.password_field :password, autocomplete: "current-password", class: "form-control", required: "" %>
