@@ -15,9 +15,10 @@ class EngagePupilScraper < Kimurai::Base
     browser.click_on 'View Details'
     puts 'View details'
 
+    puts 'Started getting timetable'
+    get_timetable(data[:current_user])
     puts 'Started getting pupil details'
     get_pupil_details(data[:current_user])
-    get_timetable(data[:current_user])
   end
 
   # Get the timetable from Engage
