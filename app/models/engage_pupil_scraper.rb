@@ -11,8 +11,11 @@ class EngagePupilScraper < Kimurai::Base
     browser.fill_in 'ctl00$PageContent$loginControl$txtUN', with: data[:username] # Username
     browser.fill_in 'ctl00$PageContent$loginControl$txtPwd', with: data[:password] # Password
     browser.click_on 'Login'
+    puts 'Logged in'
     browser.click_on 'View Details'
+    puts 'View details'
 
+    puts 'Started getting pupil details'
     get_pupil_details(data[:current_user])
     get_timetable(data[:current_user])
   end
@@ -22,12 +25,14 @@ class EngagePupilScraper < Kimurai::Base
     # Declare regular expression and timetable xpath
     regexp = /<strong>(?<name>[\w\s\d]*)<\/strong><br>(?<start_time>\d{2}:\d{2}) - (?<end_time>\d{2}:\d{2})<br>(?<subject>[a-zA-Z0-9À-žȘșȚț\s]*)<br>(?<teacher>[a-zA-Z0-9À-žȘșȚț\s,]*)<br>(?<room>\w \d\.\d)<br>/
     timetable_xpath = '//table[@id="tblTimeTable_ctl00_PageContent_apTimetable_content_pupilTimetable"]'
-
+    
+    puts 'Clicked on Timetable'
     browser.click_on 'Timetable'
 
     # Get tbody from browser response and choose rows Monday – Sunday
     # Selenium version
     @rows = Nokogiri::HTML(browser.find(timetable_xpath)['outerHTML']).xpath('//tbody').children[1..7]
+    puts "Got rows: #{@rows}"
 
     # Raise error if there are no rows found (i.e. the table was not found)
     raise StandardError.new 'Timetable is empty/Timetable header not selected' if @rows.nil? # Timetable header not selected
@@ -47,6 +52,9 @@ class EngagePupilScraper < Kimurai::Base
       { day: row.children[1].text, lessons: @lessons }
     end
 
+    puts "Mapped rows: #{@rows}"
+
+    puts "Started registering"
     register_timetable(@rows, current_user)
   end
 
@@ -71,9 +79,11 @@ class EngagePupilScraper < Kimurai::Base
 
   # Get pupil details from Engage
   def get_pupil_details current_user
+    puts 'Clicked on Pupil Details'
     browser.click_on 'Pupil Details'
 
     @rows_text = Nokogiri.HTML(browser.find('//div[@id="ctl00_PageContent_apPupilDetails_content_upPupilDetails"]/table[@class="info left"]/tbody')['outerHTML'])
+    puts "Got rows_text: #{@rows_text}"
     
     # get table headers
     headers = []
@@ -89,10 +99,15 @@ class EngagePupilScraper < Kimurai::Base
       end
     end
 
+    puts "Got rows: #{rows}"
+
     # Image
     image_path = Nokogiri::HTML.fragment(browser.find('//img[@id="ctl00_PageContent_pupilInfo_imgPupilImage"]')['outerHTML']).child.attributes['src'].value
     image_url = 'https://avenorcollegeportal.engagehosted.com/' + image_path
 
+    puts "Got image: #{image_url}"
+
+    puts 'Updating pupil details'
     update_pupil_details(current_user, image_url, rows)
 
   end
