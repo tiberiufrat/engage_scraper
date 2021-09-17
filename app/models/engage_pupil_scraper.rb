@@ -1,18 +1,15 @@
 # https://milk1000cc.hatenablog.com/entry/2019/11/04/114351
 
-require 'webdrivers'
-require 'bundler'
-Bundler.require
-
-Kimurai.configure do |config|
-  config.selenium_chrome_path = ENV['SELENIUM_CHROME_PATH'].presence
-  config.chromedriver_path = ENV['CHROMEDRIVER_PATH'].presence
-end
-
 class EngagePupilScraper < Kimurai::Base
   @name = "engage_pupil_scraper"
   @engine = :selenium_chrome # Use selenium_chrome instead of the default mechanize
   @start_urls = ["https://avenorcollegeportal.engagehosted.com/Login.aspx"]
+  @config = {
+    ignore_ssl_errors: true,
+    disable_images: true,
+    headless_mode: :virtual_display,
+
+  }
 
   def parse(response, url:, data: {})
     Capybara.default_max_wait_time = 20 # Wait up to 20 seconds for async processes to complete
